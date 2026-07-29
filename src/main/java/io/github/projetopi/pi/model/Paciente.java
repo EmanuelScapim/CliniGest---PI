@@ -25,13 +25,13 @@ public class Paciente {
     @Column(name = "nome_paciente", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "cpf_paciente", length = 11, nullable = false)
+    @Column(name = "cpf_paciente", length = 11, nullable = false, unique = true)
     private String cpf;
 
     @Column(name = "telefone_paciente", length = 11, nullable = false)
     private String telefone;
 
-    @Column(name = "emaill_paciente", length = 50, nullable = false)
+    @Column(name = "emaill_paciente", length = 50, nullable = false, unique = true)
     private String email;
 
     @Column(name = "data_nascimento", nullable = false)

@@ -22,16 +22,16 @@ public class Dentista {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id ;
 
-    @Column(name = "cro", length = 6, nullable = false)
+    @Column(name = "cro", length = 6, nullable = false, unique = true)
     private String cro;
 
     @Column(name = "especialidade", length = 20, nullable = false)
     private String especialidade;
 
-    @Column(name = "email_dentista", length = 50, nullable = false)
+    @Column(name = "email_dentista", length = 50, nullable = false, unique = true)
     private String emaildentista;
 
-    @Column(name = "cpf_dentista", length = 11, nullable = false)
+    @Column(name = "cpf_dentista", length = 11, nullable = false, unique = true)
     private String cpfDentista;
 
     @Column(name = "telefone_dentista", length = 11, nullable = false)
