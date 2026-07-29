@@ -5,5 +5,5 @@ create table tb_anamnese(
     historico_medico TEXT not null,
     medicamentos TEXT not null,
     detalhes TEXT not null,
-    data_registro date
+    data_registro timestamptz not null
 );
