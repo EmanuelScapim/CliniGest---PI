@@ -40,4 +40,7 @@ public class Paciente {
 
     @OneToOne(mappedBy = "paciente")
     Anamnese anamnese;
+
+    @OneToOne(mappedBy = "paciente")
+    Odontograma odontograma;
 }
