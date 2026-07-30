@@ -17,7 +17,7 @@ public class Tratamento {
     @Column(name = "nomeTratamento", length = 50, nullable = false)
     private String nomeTratamento;
 
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
 }
