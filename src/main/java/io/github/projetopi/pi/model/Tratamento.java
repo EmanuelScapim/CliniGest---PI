@@ -1,12 +1,13 @@
 package io.github.projetopi.pi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
+@Entity
+@Table(name = "tb_tratamento")
 public class Tratamento {
 
     @Id
@@ -14,10 +15,13 @@ public class Tratamento {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "nomeTratamento", length = 50, nullable = false)
+    @Column(name = "nome_tratamento", length = 50, nullable = false)
     private String nomeTratamento;
 
     @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
+
+    @ManyToMany(mappedBy = "tratamentos")
+    private Set<Agendamento> agendamentos = new HashSet<>();
 
 }

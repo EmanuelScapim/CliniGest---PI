@@ -2,6 +2,10 @@ package io.github.projetopi.pi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
@@ -9,6 +13,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_odontograma")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Odontograma {
 
     @Id

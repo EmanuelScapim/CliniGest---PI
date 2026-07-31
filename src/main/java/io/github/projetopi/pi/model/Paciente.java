@@ -1,6 +1,5 @@
 package io.github.projetopi.pi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,8 +38,11 @@ public class Paciente {
     private LocalDate dataNascimento;
 
     @OneToOne(mappedBy = "paciente")
-    Anamnese anamnese;
+    private Anamnese anamnese;
 
     @OneToOne(mappedBy = "paciente")
-    Odontograma odontograma;
+    private Odontograma odontograma;
+
+    @OneToOne(mappedBy = "paciente")
+    private Agendamento agendamento;
 }
