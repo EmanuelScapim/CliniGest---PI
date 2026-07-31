@@ -2,6 +2,10 @@ package io.github.projetopi.pi.model;
 
 import io.github.projetopi.pi.model.enums.StatusAgendamento;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -10,6 +14,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_agendamento")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Agendamento {
 
     @Id
@@ -39,4 +47,8 @@ public class Agendamento {
 
     @Column(name = "Observacao", columnDefinition = "TEXT")
     private String observacao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fatura", nullable = false)
+    private Fatura fatura;
 }

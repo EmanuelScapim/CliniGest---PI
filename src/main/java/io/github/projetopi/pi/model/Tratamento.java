@@ -1,13 +1,22 @@
 package io.github.projetopi.pi.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_tratamento")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tratamento {
 
     @Id
@@ -24,4 +33,6 @@ public class Tratamento {
     @ManyToMany(mappedBy = "tratamentos")
     private Set<Agendamento> agendamentos = new HashSet<>();
 
+    @Column(name = "valor", precision = 10, scale = 2)
+    private BigDecimal valor;
 }
