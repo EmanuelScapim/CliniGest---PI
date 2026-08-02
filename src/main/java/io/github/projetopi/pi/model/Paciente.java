@@ -1,9 +1,6 @@
 package io.github.projetopi.pi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,9 +12,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_paciente")
+@PrimaryKeyJoinColumn(name = "id_paciente", referencedColumnName = "id_pessoa")
 @Getter
 @Setter
-@NoArgsConstructor
 @SuperBuilder
 public class Paciente extends Pessoa {
 
