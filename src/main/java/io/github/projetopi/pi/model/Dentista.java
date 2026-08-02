@@ -12,9 +12,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_dentista")
+@PrimaryKeyJoinColumn(name = "id_dentista", referencedColumnName = "id_pessoa")
 @Setter
 @Getter
-@NoArgsConstructor
 @SuperBuilder
 public class Dentista extends Pessoa{
 
