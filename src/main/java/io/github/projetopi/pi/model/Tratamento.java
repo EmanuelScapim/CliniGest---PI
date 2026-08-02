@@ -35,4 +35,7 @@ public class Tratamento {
 
     @Column(name = "valor", precision = 10, scale = 2)
     private BigDecimal valor;
+
+    @OneToMany(mappedBy = "tratamento")
+    private Set<ConsumoMaterial> consumo = new HashSet<>();
 }

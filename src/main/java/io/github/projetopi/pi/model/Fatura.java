@@ -19,8 +19,8 @@ public class Fatura {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToMany(mappedBy = "fatura")
-    private Set<Agendamento> agendamentos = new HashSet<>();
+    @OneToOne(mappedBy = "fatura")
+    private Agendamento agendamento;
 
     @Column(name = "valor_total", precision = 10, scale = 2)
     private BigDecimal valor_total;

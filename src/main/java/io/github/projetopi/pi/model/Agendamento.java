@@ -1,11 +1,13 @@
 package io.github.projetopi.pi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.projetopi.pi.model.enums.StatusAgendamento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -25,11 +27,11 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
     private Paciente paciente;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_dentista", nullable = false)
     private Dentista dentista;
 
@@ -38,7 +40,11 @@ public class Agendamento {
             joinColumns = @JoinColumn(name = "id_agendamento"),
             inverseJoinColumns = @JoinColumn(name = "id_tratamento")
     )
-    Set<Tratamento> tratamentos = new HashSet<>();
+    private Set<Tratamento> tratamentos = new HashSet<>();
+
+    @CreationTimestamp
+    @Column(name = "data_hora", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataHora;
 
     @Enumerated(EnumType.STRING)
@@ -48,7 +54,7 @@ public class Agendamento {
     @Column(name = "Observacao", columnDefinition = "TEXT")
     private String observacao;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_fatura", nullable = false)
     private Fatura fatura;
 }

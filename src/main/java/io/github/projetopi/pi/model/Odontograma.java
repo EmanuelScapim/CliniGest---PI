@@ -35,4 +35,7 @@ public class Odontograma {
     @Column(name = "data_criacao", nullable = false )
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataCriacao;
+
+    @OneToOne(mappedBy = "odontograma")
+    private Prontuario prontuario;
 }

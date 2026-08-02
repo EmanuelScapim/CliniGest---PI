@@ -2,25 +2,21 @@ package io.github.projetopi.pi.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_dentista")
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-public class Dentista {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id ;
+@SuperBuilder
+public class Dentista extends Pessoa{
 
     @Column(name = "cro", length = 6, nullable = false, unique = true)
     private String cro;
@@ -28,12 +24,7 @@ public class Dentista {
     @Column(name = "especialidade", length = 20, nullable = false)
     private String especialidade;
 
-    @Column(name = "email_dentista", length = 50, nullable = false, unique = true)
-    private String emaildentista;
+    @OneToMany(mappedBy = "dentista")
+    private Set<Agendamento> agendamentos = new HashSet<>();
 
-    @Column(name = "cpf_dentista", length = 11, nullable = false, unique = true)
-    private String cpfDentista;
-
-    @Column(name = "telefone_dentista", length = 11, nullable = false)
-    private String telefoneDentista;
 }

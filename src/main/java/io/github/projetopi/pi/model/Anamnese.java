@@ -43,4 +43,7 @@ public class Anamnese {
     @Column(name = "data_registro", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataRegistro;
+
+    @OneToOne(mappedBy = "anamnese")
+    private Prontuario prontuario;
 }
