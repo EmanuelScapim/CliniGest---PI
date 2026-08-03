@@ -2,9 +2,7 @@ package io.github.projetopi.pi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,8 +13,6 @@ import java.util.UUID;
 @Table(name = "tb_anamnese")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Anamnese {
 
     @Id
@@ -46,4 +42,18 @@ public class Anamnese {
 
     @OneToOne(mappedBy = "anamnese")
     private Prontuario prontuario;
+
+    public Anamnese() {
+    }
+
+    public Anamnese(UUID id, Paciente paciente, String alergiasPaciente, String historicoMedico, String medicamentos, String detalhes, Instant dataRegistro, Prontuario prontuario) {
+        this.id = id;
+        this.paciente = paciente;
+        this.alergiasPaciente = alergiasPaciente;
+        this.historicoMedico = historicoMedico;
+        this.medicamentos = medicamentos;
+        this.detalhes = detalhes;
+        this.dataRegistro = dataRegistro;
+        this.prontuario = prontuario;
+    }
 }

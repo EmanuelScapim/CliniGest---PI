@@ -3,9 +3,7 @@ package io.github.projetopi.pi.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.projetopi.pi.model.enums.StatusAgendamento;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,8 +16,6 @@ import java.util.UUID;
 @Table(name = "tb_agendamento")
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Agendamento {
 
     @Id
@@ -57,4 +53,19 @@ public class Agendamento {
     @OneToOne
     @JoinColumn(name = "id_fatura", nullable = false)
     private Fatura fatura;
+
+
+    public Agendamento() {
+    }
+
+    public Agendamento(UUID id, Paciente paciente, Dentista dentista, Instant dataHora, String observacao, Fatura fatura, StatusAgendamento statusAgendamento, Set<Tratamento> tratamentos) {
+        this.id = id;
+        this.paciente = paciente;
+        this.dentista = dentista;
+        this.dataHora = dataHora;
+        this.observacao = observacao;
+        this.fatura = fatura;
+        this.statusAgendamento = statusAgendamento;
+        this.tratamentos = tratamentos;
+    }
 }

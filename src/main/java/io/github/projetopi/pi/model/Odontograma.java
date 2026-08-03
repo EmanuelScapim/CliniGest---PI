@@ -2,9 +2,7 @@ package io.github.projetopi.pi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,8 +13,6 @@ import java.util.UUID;
 @Table(name = "tb_odontograma")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Odontograma {
 
     @Id
@@ -38,4 +34,15 @@ public class Odontograma {
 
     @OneToOne(mappedBy = "odontograma")
     private Prontuario prontuario;
+
+    public Odontograma() {
+    }
+
+    public Odontograma(UUID id, Paciente paciente, String imgOdontograma, Instant dataCriacao, Prontuario prontuario) {
+        this.id = id;
+        this.paciente = paciente;
+        this.imgOdontograma = imgOdontograma;
+        this.dataCriacao = dataCriacao;
+        this.prontuario = prontuario;
+    }
 }

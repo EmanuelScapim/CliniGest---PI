@@ -1,9 +1,7 @@
 package io.github.projetopi.pi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
@@ -14,8 +12,6 @@ import java.util.UUID;
 @Table(name = "tb_material")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Material {
 
     @Id
@@ -31,4 +27,14 @@ public class Material {
 
     @OneToMany(mappedBy = "material")
     private Set<ConsumoMaterial> consumo = new HashSet<>();
+
+    public Material() {
+    }
+
+    public Material(UUID id, String nome, Integer quantidadeMaterial, Set<ConsumoMaterial> consumo) {
+        this.id = id;
+        this.nome = nome;
+        this.quantidadeMaterial = quantidadeMaterial;
+        this.consumo = consumo;
+    }
 }

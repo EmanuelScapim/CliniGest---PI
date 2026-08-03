@@ -2,9 +2,7 @@ package io.github.projetopi.pi.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +13,6 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "id_paciente", referencedColumnName = "id_pessoa")
 @Getter
 @Setter
-@SuperBuilder
 public class Paciente extends Pessoa {
 
     @OneToOne(mappedBy = "paciente")
@@ -29,4 +26,22 @@ public class Paciente extends Pessoa {
 
     @OneToOne(mappedBy = "paciente")
     private Prontuario prontuario;
+
+    public Paciente() {
+    }
+
+    public Paciente(Anamnese anamnese, Odontograma odontograma, Set<Agendamento> agendamento, Prontuario prontuario) {
+        this.anamnese = anamnese;
+        this.odontograma = odontograma;
+        this.agendamento = agendamento;
+        this.prontuario = prontuario;
+    }
+
+    public Paciente(PessoaBuilder<?, ?> b, Anamnese anamnese, Odontograma odontograma, Set<Agendamento> agendamento, Prontuario prontuario) {
+        super(b);
+        this.anamnese = anamnese;
+        this.odontograma = odontograma;
+        this.agendamento = agendamento;
+        this.prontuario = prontuario;
+    }
 }

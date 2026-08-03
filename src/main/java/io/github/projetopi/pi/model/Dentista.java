@@ -3,9 +3,7 @@ package io.github.projetopi.pi.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +13,6 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "id_dentista", referencedColumnName = "id_pessoa")
 @Setter
 @Getter
-@SuperBuilder
 public class Dentista extends Pessoa{
 
     @Column(name = "cro", length = 6, nullable = false, unique = true)
@@ -26,5 +23,15 @@ public class Dentista extends Pessoa{
 
     @OneToMany(mappedBy = "dentista")
     private Set<Agendamento> agendamentos = new HashSet<>();
+
+    public Dentista() {
+    }
+
+    public Dentista(PessoaBuilder<?, ?> b, String cro, String especialidade, Set<Agendamento> agendamentos) {
+        super(b);
+        this.cro = cro;
+        this.especialidade = especialidade;
+        this.agendamentos = agendamentos;
+    }
 
 }

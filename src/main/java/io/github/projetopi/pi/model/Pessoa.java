@@ -2,7 +2,6 @@ package io.github.projetopi.pi.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -14,7 +13,6 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
-@NoArgsConstructor
 @SuperBuilder
 public abstract class  Pessoa {
 
@@ -37,4 +35,16 @@ public abstract class  Pessoa {
 
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
+
+    public Pessoa() {
+    }
+
+    public Pessoa(UUID id, LocalDate dataNascimento, String emailPessoa, String telefonePessoa, String cpf, String nomePessoa) {
+        this.id = id;
+        this.dataNascimento = dataNascimento;
+        this.emailPessoa = emailPessoa;
+        this.telefonePessoa = telefonePessoa;
+        this.cpf = cpf;
+        this.nomePessoa = nomePessoa;
+    }
 }
