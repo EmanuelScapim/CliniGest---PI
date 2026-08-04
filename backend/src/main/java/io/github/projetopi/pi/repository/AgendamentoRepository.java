@@ -19,12 +19,12 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, UUID> 
     @Query("select p from Agendamento a join a.paciente p")
     List<Paciente> listarPacienteDosAtendimentos();
 
-    @Query("select t from Agendamento a join a.tratamento t")
+    @Query("select t from Agendamento a join a.tratamentos t")
     List<Tratamento> listarTratamentoDosAtendimentos();
 
     @Query("""
             select a from Agendamento
-            a where a.paciente.nome = :nome
+            a where a.paciente.nomePessoa = :nome
             """)
     List<Agendamento> listarAgendamentosPorPaciente(@Param("nome") String nome);
 
