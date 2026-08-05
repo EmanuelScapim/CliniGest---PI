@@ -28,4 +28,11 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, UUID> 
             """)
     List<Agendamento> listarAgendamentosPorPaciente(@Param("nome") String nome);
 
+    @Query("""
+            select a from Agendamento
+            a where a.dentista.nomePessoa = :nome
+            """)
+    List<Agendamento> listarAgendamentosPorDentista(@Param("nome") String nome);
+
+
 }
