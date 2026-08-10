@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -28,13 +29,22 @@ public class Material {
     @OneToMany(mappedBy = "material")
     private Set<ConsumoMaterial> consumo = new HashSet<>();
 
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private Instant dataCriacao;
+
+    @Column(name = "data_atualizacao", insertable = false, updatable = false)
+    private Instant dataAtualizacao;
+
     public Material() {
     }
 
-    public Material(UUID id, String nome, Integer quantidadeMaterial, Set<ConsumoMaterial> consumo) {
+    public Material(UUID id, String nome, Integer quantidadeMaterial, Set<ConsumoMaterial> consumo,
+                    Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.nome = nome;
         this.quantidadeMaterial = quantidadeMaterial;
         this.consumo = consumo;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
     }
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -36,15 +37,25 @@ public abstract class  Pessoa {
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private Instant dataCriacao;
+
+    @Column(name = "data_atualizacao", insertable = false, updatable = false)
+    private Instant dataAtualizacao;
+
     public Pessoa() {
     }
 
-    public Pessoa(UUID id, LocalDate dataNascimento, String emailPessoa, String telefonePessoa, String cpf, String nomePessoa) {
+    public Pessoa(UUID id, LocalDate dataNascimento, String emailPessoa,
+                  String telefonePessoa, String cpf, String nomePessoa,
+                  Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.dataNascimento = dataNascimento;
         this.emailPessoa = emailPessoa;
         this.telefonePessoa = telefonePessoa;
         this.cpf = cpf;
         this.nomePessoa = nomePessoa;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
     }
 }

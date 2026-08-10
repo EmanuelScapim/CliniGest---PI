@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -28,13 +29,22 @@ public class ConsumoMaterial {
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private Instant dataCriacao;
+
+    @Column(name = "data_atualizacao", insertable = false, updatable = false)
+    private Instant dataAtualizacao;
+
     public ConsumoMaterial() {
     }
 
-    public ConsumoMaterial(UUID id, Material material, Tratamento tratamento, Integer quantidade) {
+    public ConsumoMaterial(UUID id, Material material, Tratamento tratamento, Integer quantidade,
+                           Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.material = material;
         this.tratamento = tratamento;
         this.quantidade = quantidade;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
     }
 }

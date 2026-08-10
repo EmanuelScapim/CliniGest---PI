@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -35,14 +36,24 @@ public class Fatura {
     @Enumerated(EnumType.STRING)
     private ModoPagamento modoPagamento;
 
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private Instant dataCriacao;
+
+    @Column(name = "data_atualizacao", insertable = false, updatable = false)
+    private Instant dataAtualizacao;
+
     public Fatura() {
     }
 
-    public Fatura(UUID id, BigDecimal valor_total, Agendamento agendamento, StatusPagamento statusPagamento, ModoPagamento modoPagamento) {
+    public Fatura(UUID id, BigDecimal valor_total, Agendamento agendamento,
+                  StatusPagamento statusPagamento, ModoPagamento modoPagamento,
+                  Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.valor_total = valor_total;
         this.agendamento = agendamento;
         this.statusPagamento = statusPagamento;
         this.modoPagamento = modoPagamento;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
     }
 }

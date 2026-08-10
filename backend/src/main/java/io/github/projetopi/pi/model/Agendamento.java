@@ -38,7 +38,6 @@ public class Agendamento {
     )
     private Set<Tratamento> tratamentos = new HashSet<>();
 
-    @CreationTimestamp
     @Column(name = "data_hora", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataHora;
@@ -54,11 +53,19 @@ public class Agendamento {
     @JoinColumn(name = "id_fatura", nullable = false)
     private Fatura fatura;
 
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private Instant dataCriacao;
+
+    @Column(name = "data_atualizacao", insertable = false, updatable = false)
+    private Instant dataAtualizacao;
+
 
     public Agendamento() {
     }
 
-    public Agendamento(UUID id, Paciente paciente, Dentista dentista, Instant dataHora, String observacao, Fatura fatura, StatusAgendamento statusAgendamento, Set<Tratamento> tratamentos) {
+    public Agendamento(UUID id, Paciente paciente, Dentista dentista, Instant dataHora,
+                       String observacao, Fatura fatura, StatusAgendamento statusAgendamento,
+                       Set<Tratamento> tratamentos, Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.paciente = paciente;
         this.dentista = dentista;
@@ -67,5 +74,7 @@ public class Agendamento {
         this.fatura = fatura;
         this.statusAgendamento = statusAgendamento;
         this.tratamentos = tratamentos;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
     }
 }

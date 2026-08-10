@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -35,15 +36,26 @@ public class Tratamento {
     @OneToMany(mappedBy = "tratamento")
     private Set<ConsumoMaterial> consumo = new HashSet<>();
 
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private Instant dataCriacao;
+
+    @Column(name = "data_atualizacao", insertable = false, updatable = false)
+    private Instant dataAtualizacao;
+
     public Tratamento() {
     }
 
-    public Tratamento(UUID id, String nomeTratamento, String descricao, Set<Agendamento> agendamentos, BigDecimal valor, Set<ConsumoMaterial> consumo) {
+    public Tratamento(UUID id, String nomeTratamento, String descricao,
+                      Set<Agendamento> agendamentos, BigDecimal valor,
+                      Set<ConsumoMaterial> consumo, Instant dataCriacao,
+                      Instant dataAtualizacao) {
         this.id = id;
         this.nomeTratamento = nomeTratamento;
         this.descricao = descricao;
         this.agendamentos = agendamentos;
         this.valor = valor;
         this.consumo = consumo;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
     }
 }
