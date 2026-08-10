@@ -1,5 +1,6 @@
 package io.github.projetopi.pi.controller;
 
+import io.github.projetopi.pi.controller.dto.PacienteDTO;
 import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.service.PacienteService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,10 @@ public class PacienteController {
     private final PacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<Paciente> cadastarPacienteController(@RequestBody Paciente paciente){
-        pacienteService.cadastrarPacienteService(paciente);
+    public ResponseEntity<Paciente> cadastarPacienteController(@RequestBody PacienteDTO paciente){
+        Paciente pacienteEntidade = paciente.mapearPaciente();
+        pacienteService.cadastrarPacienteService(pacienteEntidade);
 
-        return  ResponseEntity.ok().body(paciente);
+        return  ResponseEntity.ok().body(pacienteEntidade);
     }
 }
