@@ -13,4 +13,6 @@ public interface PacienteRepository extends JpaRepository<Paciente, UUID> {
 
     @Query("SELECT p FROM Paciente p WHERE p.nomePessoa LIKE %:termo% OR p.emailPessoa LIKE %:termo%")
     List<Paciente> buscarPorNomeOuEmail(@Param("termo") String termo);
+
+    void deleteByEmailPessoa(String email);
 }

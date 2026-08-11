@@ -5,9 +5,9 @@ import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.repository.PacienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,15 +20,20 @@ public class PacienteService {
         return pacienteRepository.save(paciente);
     }
 
-    public List<PacienteDTO> listarTodosPacientes(){
+    public List<PacienteDTO> listarTodosPacientesService(){
         return pacienteRepository.findAll().stream()
                 .map(PacienteDTO::listaPacientes)
                 .collect(Collectors.toList());
     }
 
-    public List<PacienteDTO> buscarPorNomeOuEmail(String termo){
+    public List<PacienteDTO> buscarPorNomeOuEmailService(String termo){
         return pacienteRepository.buscarPorNomeOuEmail(termo).stream()
                 .map(PacienteDTO::listaPacientes)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deletePorEmailService(String email){
+        pacienteRepository.deleteByEmailPessoa(email);
     }
 }

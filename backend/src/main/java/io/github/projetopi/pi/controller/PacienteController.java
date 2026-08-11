@@ -26,14 +26,21 @@ public class PacienteController {
     @GetMapping
     public ResponseEntity<List<PacienteDTO>> listarTodosPacientesController(){
 
-        List<PacienteDTO> pacientesListados = pacienteService.listarTodosPacientes();
+        List<PacienteDTO> pacientesListados = pacienteService.listarTodosPacientesService();
 
         return ResponseEntity.ok().body(pacientesListados);
     }
 
     @GetMapping(params = "termo")
     public ResponseEntity<List<PacienteDTO>> buscarPorNomeOuEmailController(@RequestParam(required = false) String termo){
-        List<PacienteDTO> pacienteBuscado = pacienteService.buscarPorNomeOuEmail(termo);
+        List<PacienteDTO> pacienteBuscado = pacienteService.buscarPorNomeOuEmailService(termo);
         return ResponseEntity.ok(pacienteBuscado);
     }
+
+    @DeleteMapping(params = "email")
+    public void deletaPorEmailController(@RequestParam(required = false) String email){
+        pacienteService.deletePorEmailService(email);
+    }
+
+
 }
