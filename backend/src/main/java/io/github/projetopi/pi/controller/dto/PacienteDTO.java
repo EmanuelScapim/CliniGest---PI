@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record PacienteDTO(
-        UUID idPacietneDto,
         String nomePacienteDto,
         String cpfPacienteDto,
         String telefonePacienteDto,
@@ -23,5 +22,15 @@ public record PacienteDTO(
         paciente.setDataNascimento(this.dataNascimentoPacienteDto);
 
         return paciente;
+    }
+
+    public static PacienteDTO listaPacientes(Paciente paciente){
+        return new PacienteDTO(
+                paciente.getNomePessoa(),
+                paciente.getCpf(),
+                paciente.getEmailPessoa(),
+                paciente.getTelefonePessoa(),
+                paciente.getDataNascimento()
+        );
     }
 }

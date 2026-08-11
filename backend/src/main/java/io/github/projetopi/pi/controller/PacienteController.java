@@ -5,10 +5,9 @@ import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.service.PacienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
@@ -18,10 +17,19 @@ public class PacienteController {
     private final PacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<Paciente> cadastarPacienteController(@RequestBody PacienteDTO paciente){
+    public void cadastarPacienteController(@RequestBody PacienteDTO paciente) {
         Paciente pacienteEntidade = paciente.mapearPaciente();
         pacienteService.cadastrarPacienteService(pacienteEntidade);
 
-        return  ResponseEntity.ok().body(pacienteEntidade);
     }
+
+    @GetMapping
+    public ResponseEntity<List<PacienteDTO>> listarTodosPacientes(){
+
+        List<PacienteDTO> pacientesListados = pacienteService.listarTodosPacientes();
+
+        return ResponseEntity.ok().body(pacientesListados);
+    }
+
+
 }
