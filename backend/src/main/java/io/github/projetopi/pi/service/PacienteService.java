@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +22,12 @@ public class PacienteService {
 
     public List<PacienteDTO> listarTodosPacientes(){
         return pacienteRepository.findAll().stream()
+                .map(PacienteDTO::listaPacientes)
+                .collect(Collectors.toList());
+    }
+
+    public List<PacienteDTO> buscarPorNomeOuEmail(String termo){
+        return pacienteRepository.buscarPorNomeOuEmail(termo).stream()
                 .map(PacienteDTO::listaPacientes)
                 .collect(Collectors.toList());
     }

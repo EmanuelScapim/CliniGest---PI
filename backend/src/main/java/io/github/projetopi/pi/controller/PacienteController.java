@@ -24,12 +24,16 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PacienteDTO>> listarTodosPacientes(){
+    public ResponseEntity<List<PacienteDTO>> listarTodosPacientesController(){
 
         List<PacienteDTO> pacientesListados = pacienteService.listarTodosPacientes();
 
         return ResponseEntity.ok().body(pacientesListados);
     }
 
-
+    @GetMapping(params = "termo")
+    public ResponseEntity<List<PacienteDTO>> buscarPorNomeOuEmailController(@RequestParam(required = false) String termo){
+        List<PacienteDTO> pacienteBuscado = pacienteService.buscarPorNomeOuEmail(termo);
+        return ResponseEntity.ok(pacienteBuscado);
+    }
 }
