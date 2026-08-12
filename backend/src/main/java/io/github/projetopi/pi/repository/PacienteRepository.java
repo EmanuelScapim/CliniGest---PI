@@ -15,4 +15,13 @@ public interface PacienteRepository extends JpaRepository<Paciente, UUID> {
     List<Paciente> buscarPorNomeOuEmail(@Param("termo") String termo);
 
     void deleteByEmailPessoa(String email);
+    List<Paciente> findByNomePessoa(String nome);
+    List<Paciente> findByEmailPessoa(String email);
+    List<Paciente> findByCpf(String cpf);
+    List<Paciente> findByEmailPessoaAndNomePessoa(String nome,
+                                                  String email);
+
+    List<Paciente> findByEmailPessoaAndNomePessoaAndCpf(String email,
+                                                            String nome,
+                                                            String cpf);
 }
