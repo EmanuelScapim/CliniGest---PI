@@ -28,6 +28,7 @@ public class PacienteController {
 
         try{
         Paciente pacienteEntidade = paciente.mapearPaciente();
+        pacienteEntidade = pacienteService.cadastrarPacienteService(pacienteEntidade);
 
         URI local = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -84,6 +85,7 @@ public class PacienteController {
     @PutMapping("{id}")
     public ResponseEntity<Object> atualiazPacienteController(@PathVariable("id") String id, @RequestBody PacienteDTO pacienteDTO){
 
+        try{
         var idPaciente = UUID.fromString(id);
         Optional<Paciente> pacienteOptional = pacienteService.obterPorId(idPaciente);
 
@@ -101,5 +103,9 @@ public class PacienteController {
         pacienteService.atualizarPaciente(paciente);
 
         return ResponseEntity.noContent().build();
+        } catch (RegistroDuplicadoException e) {
+            var erroDTO = RespostaDeErroDTO.conflito(e.getMessage());
+            return ResponseEntity.status(erroDTO.status()).body(erroDTO);
+        }
     }
 }

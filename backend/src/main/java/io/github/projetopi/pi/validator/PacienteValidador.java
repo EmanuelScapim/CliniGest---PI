@@ -22,10 +22,11 @@ public class PacienteValidador {
     }
 
     private boolean pacienteExisteCadastrado(Paciente paciente){
-        Optional<Paciente> pacienteEncontrado = pacienteRepository.findByEmailPessoaAndNomePessoaAndCpf(
+        Optional<Paciente> pacienteEncontrado = pacienteRepository.findByEmailPessoaAndNomePessoaAndCpfAndDataNascimento(
                 paciente.getEmailPessoa(),
                 paciente.getNomePessoa(),
-                paciente.getCpf()
+                paciente.getCpf(),
+                paciente.getDataNascimento()
         );
 
         if(paciente.getId() == null){
