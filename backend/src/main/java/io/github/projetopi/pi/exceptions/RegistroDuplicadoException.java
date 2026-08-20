@@ -1,4 +1,4 @@
-package io.github.projetopi.pi.exeptions;
+package io.github.projetopi.pi.exceptions;
 
 public class RegistroDuplicadoException extends RuntimeException {
     public RegistroDuplicadoException(String message) {

@@ -1,7 +1,7 @@
 package io.github.projetopi.pi.validator;
 
 
-import io.github.projetopi.pi.exeptions.RegistroDuplicadoException;
+import io.github.projetopi.pi.exceptions.RegistroDuplicadoException;
 import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.repository.PacienteRepository;
 import lombok.RequiredArgsConstructor;
