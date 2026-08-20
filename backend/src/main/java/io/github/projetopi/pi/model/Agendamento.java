@@ -5,7 +5,6 @@ import io.github.projetopi.pi.model.enums.StatusAgendamento;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.HashSet;
