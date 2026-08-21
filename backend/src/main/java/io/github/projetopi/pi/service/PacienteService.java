@@ -5,6 +5,8 @@ import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.repository.PacienteRepository;
 import io.github.projetopi.pi.validator.PacienteValidador;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,31 +27,22 @@ public class PacienteService {
         return pacienteRepository.save(paciente);
     }
 
-    public List<PacienteDTO> listarTodosPacientesService(){
-        return pacienteRepository.findAll().stream()
-                .map(PacienteDTO::listaPacientes)
-                .collect(Collectors.toList());
-    }
+    public List<Paciente> pesquisaByExample(String nome, String email, String cpf){
 
-    public List<Paciente> buscarPorNomeOuEmailOuCpfService(String nome, String email, String cpf){
+        var paciente = new Paciente();
+        paciente.setNomePessoa(nome);
+        paciente.setEmailPessoa(email);
+        paciente.setCpf(cpf);
 
-        if(nome != null && email != null && cpf != null){
-           return pacienteRepository.findByEmailPessoaAndNomePessoaAndCpf(nome, email, cpf);
-        }
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreNullValues()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 
-        if(nome != null){
-            return pacienteRepository.findByNomePessoa(nome);
-        }
+        Example<Paciente> pacienteExample = Example.of(paciente,matcher);
 
-        if(email != null){
-            return pacienteRepository.findByEmailPessoa(email);
-        }
-
-        if(cpf != null){
-            return pacienteRepository.findByCpf( cpf);
-        }
-
-        return pacienteRepository.findAll();
+        return pacienteRepository.findAll(pacienteExample);
     }
 
     @Transactional
