@@ -22,24 +22,19 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/pacientes")
 @RequiredArgsConstructor
-public class PacienteController {
+public class PacienteController implements GenericController {
 
     private final PacienteService pacienteService;
     private final PacienteMapper mapper;
 
     @PostMapping
-    public ResponseEntity<Object> cadastarPacienteController(@RequestBody PacienteDTO paciente) {
+    public ResponseEntity<Object> cadastarPacienteController (@RequestBody PacienteDTO paciente) {
 
         try{
         Paciente pacienteEntidade = mapper.toEntity(paciente);
         pacienteEntidade = pacienteService.cadastrarPacienteService(pacienteEntidade);
-
-        URI local = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(pacienteEntidade.getId())
-                .toUri();
-        return ResponseEntity.created(local).build();
+        URI location = gerarHeaderLocation(pacienteEntidade.getId());
+        return ResponseEntity.created(location).build();
         } catch (RegistroDuplicadoException e) {
             var erroDTO = RespostaDeErroDTO.conflito(e.getMessage());
             return ResponseEntity.status(erroDTO.status()).body(erroDTO);
