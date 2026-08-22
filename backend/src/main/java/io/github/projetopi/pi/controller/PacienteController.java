@@ -6,12 +6,10 @@ import io.github.projetopi.pi.controller.mappers.PacienteMapper;
 import io.github.projetopi.pi.exceptions.RegistroDuplicadoException;
 import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.service.PacienteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-
 
 import java.net.URI;
 import java.util.List;
@@ -28,7 +26,7 @@ public class PacienteController implements GenericController {
     private final PacienteMapper mapper;
 
     @PostMapping
-    public ResponseEntity<Object> cadastarPacienteController (@RequestBody PacienteDTO paciente) {
+    public ResponseEntity<Object> cadastarPacienteController (@RequestBody @Valid PacienteDTO paciente) {
 
         try{
         Paciente pacienteEntidade = mapper.toEntity(paciente);
@@ -71,7 +69,7 @@ public class PacienteController implements GenericController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> atualiazPacienteController(@PathVariable("id") String id, @RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<Object> atualiazPacienteController(@PathVariable("id") String id, @RequestBody @Valid PacienteDTO pacienteDTO){
 
         try{
         var idPaciente = UUID.fromString(id);
