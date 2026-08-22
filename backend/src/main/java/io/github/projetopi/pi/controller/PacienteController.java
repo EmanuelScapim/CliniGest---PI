@@ -28,15 +28,11 @@ public class PacienteController implements GenericController {
     @PostMapping
     public ResponseEntity<Object> cadastarPacienteController (@RequestBody @Valid PacienteDTO paciente) {
 
-        try{
         Paciente pacienteEntidade = mapper.toEntity(paciente);
         pacienteEntidade = pacienteService.cadastrarPacienteService(pacienteEntidade);
         URI location = gerarHeaderLocation(pacienteEntidade.getId());
         return ResponseEntity.created(location).build();
-        } catch (RegistroDuplicadoException e) {
-            var erroDTO = RespostaDeErroDTO.conflito(e.getMessage());
-            return ResponseEntity.status(erroDTO.status()).body(erroDTO);
-        }
+
     }
 
     @GetMapping("{id}")
@@ -71,7 +67,7 @@ public class PacienteController implements GenericController {
     @PutMapping("{id}")
     public ResponseEntity<Object> atualiazPacienteController(@PathVariable("id") String id, @RequestBody @Valid PacienteDTO pacienteDTO){
 
-        try{
+
         var idPaciente = UUID.fromString(id);
         Optional<Paciente> pacienteOptional = pacienteService.obterPorId(idPaciente);
 
@@ -89,9 +85,5 @@ public class PacienteController implements GenericController {
         pacienteService.atualizarPaciente(paciente);
 
         return ResponseEntity.noContent().build();
-        } catch (RegistroDuplicadoException e) {
-            var erroDTO = RespostaDeErroDTO.conflito(e.getMessage());
-            return ResponseEntity.status(erroDTO.status()).body(erroDTO);
-        }
     }
 }
