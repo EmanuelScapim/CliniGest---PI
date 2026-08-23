@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class PacienteValidador {
+public class PacienteValidator {
 
     private  final PacienteRepository pacienteRepository;
 

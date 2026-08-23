@@ -1,9 +1,8 @@
 package io.github.projetopi.pi.service;
 
-import io.github.projetopi.pi.controller.dto.PacienteDTO;
 import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.repository.PacienteRepository;
-import io.github.projetopi.pi.validator.PacienteValidador;
+import io.github.projetopi.pi.validator.PacienteValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -13,17 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PacienteService {
 
     private final PacienteRepository pacienteRepository;
-    private final PacienteValidador pacienteValidador;
+    private final PacienteValidator pacienteValidator;
 
     public Paciente cadastrarPacienteService(Paciente paciente){
-        pacienteValidador.validaPaciente(paciente);
+        pacienteValidator.validaPaciente(paciente);
         return pacienteRepository.save(paciente);
     }
 
@@ -54,7 +52,7 @@ public class PacienteService {
         if(paciente.getId() == null){
             throw new IllegalArgumentException("Para atualizar é necessário que o paciente exista");
         }
-        pacienteValidador.validaPaciente(paciente);
+        pacienteValidator.validaPaciente(paciente);
         pacienteRepository.save(paciente);
     }
 

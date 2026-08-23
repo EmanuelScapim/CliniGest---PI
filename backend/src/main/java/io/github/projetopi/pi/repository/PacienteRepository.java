@@ -12,22 +12,10 @@ import java.util.UUID;
 
 public interface PacienteRepository extends JpaRepository<Paciente, UUID> {
 
-    @Query("SELECT p FROM Paciente p WHERE p.nomePessoa LIKE %:termo% OR p.emailPessoa LIKE %:termo%")
-    List<Paciente> buscarPorNomeOuEmail(@Param("termo") String termo);
-
     void deleteByEmailPessoa(String email);
-    List<Paciente> findByNomePessoa(String nome);
-    List<Paciente> findByEmailPessoa(String email);
-    List<Paciente> findByCpf(String cpf);
-    List<Paciente> findByEmailPessoaAndNomePessoa(String nome,
-                                                  String email);
 
     Optional<Paciente> findByEmailPessoaAndNomePessoaAndCpfAndDataNascimento(String email,
                                                             String nome,
                                                             String cpf,
                                                             LocalDate dataNascimento);
-
-    List<Paciente> findByEmailPessoaAndNomePessoaAndCpf(String email,
-                                                        String nome,
-                                                        String cpf);
 }

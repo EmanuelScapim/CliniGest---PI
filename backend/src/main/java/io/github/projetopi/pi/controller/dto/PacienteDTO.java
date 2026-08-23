@@ -1,8 +1,6 @@
 package io.github.projetopi.pi.controller.dto;
 
-import io.github.projetopi.pi.model.Paciente;
 import jakarta.validation.constraints.*;
-import org.apache.logging.log4j.message.Message;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -12,7 +10,7 @@ public record PacienteDTO(
         UUID idDTO,
 
         @NotBlank(message = "Campo obrigatorio")
-        @Size(max = 200,  min = 5, message = "O nome não atende os padrões exigidos")
+        @Size(max = 100,  min = 5, message = "O nome não atende os padrões exigidos")
         String nomePacienteDto,
 
         @NotBlank(message = "Campo obrigatório")
@@ -25,6 +23,7 @@ public record PacienteDTO(
         String telefonePacienteDto,
 
         @NotBlank(message = "Campo obrigatório")
+        @Size(max = 100,min = 8, message = "Campo fora do padrão")
         @Email
         String emailPacienteDto,
 
