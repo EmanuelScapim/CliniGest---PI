@@ -37,5 +37,4 @@ public record DentistaDTO(
 
         @NotBlank(message = "Campo obrigatório")
         @Size(max = 20, min = 5, message = "Especialidade fora do padrão")
-        String especialidadeDentistaDto) {
-}
+        String especialidadeDentistaDto) {}
