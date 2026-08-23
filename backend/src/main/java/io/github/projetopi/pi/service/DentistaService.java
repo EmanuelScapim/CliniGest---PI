@@ -46,4 +46,24 @@ public class DentistaService {
         return dentistaRepository.findAll(dentistaExample);
     }
 
+    public void deletarDentistaPorCpfOuId(String cpf,
+                                          String cro,
+                                          String email,
+                                          String nome){
+        var dentista = new Dentista();
+        dentista.setCpf(cpf);
+        dentista.setCro(cro);
+        dentista.setEmailPessoa(email);
+        dentista.setNomePessoa(nome);
+
+        ExampleMatcher matcher =ExampleMatcher
+                .matching()
+                .withIgnoreNullValues()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        List<Dentista> dentistaEncotrado= dentistaRepository.findAll(Example.of(dentista, matcher));
+        dentistaRepository.deleteAll(dentistaEncotrado);
+    }
+
 }
