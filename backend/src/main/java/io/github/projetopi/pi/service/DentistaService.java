@@ -8,8 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +49,7 @@ public class DentistaService {
         return dentistaRepository.findAll(dentistaExample);
     }
 
+    @Transactional
     public void deletarDentistaPorCpfOuId(String cpf,
                                           String cro,
                                           String email,
@@ -64,6 +68,19 @@ public class DentistaService {
 
         List<Dentista> dentistaEncotrado= dentistaRepository.findAll(Example.of(dentista, matcher));
         dentistaRepository.deleteAll(dentistaEncotrado);
+    }
+
+    public void atualizarDentista(Dentista dentista){
+        if(dentista.getId() == null){
+            throw new IllegalArgumentException("Para atualizar é necessário que o paciente exista");
+        }
+
+        dentistaValidator.validaDentista(dentista);
+        dentistaRepository.save(dentista);
+    }
+
+    public Optional<Dentista> encotrarPorId(UUID id){
+        return dentistaRepository.findById(id);
     }
 
 }

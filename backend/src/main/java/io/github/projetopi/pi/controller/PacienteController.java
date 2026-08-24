@@ -1,9 +1,7 @@
 package io.github.projetopi.pi.controller;
 
 import io.github.projetopi.pi.controller.dto.PacienteDTO;
-import io.github.projetopi.pi.controller.dto.RespostaDeErroDTO;
 import io.github.projetopi.pi.controller.mappers.PacienteMapper;
-import io.github.projetopi.pi.exceptions.RegistroDuplicadoException;
 import io.github.projetopi.pi.model.Paciente;
 import io.github.projetopi.pi.service.PacienteService;
 import jakarta.validation.Valid;

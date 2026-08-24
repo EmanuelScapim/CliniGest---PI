@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -54,4 +56,24 @@ public class DentistaController implements GenericController {
         dentistaService.deletarDentistaPorCpfOuId(cpf, cro, email, nome);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarDentista(@PathVariable("id") String id, @RequestBody @Valid DentistaDTO dentistaDTO){
+        var idDentista = UUID.fromString(id);
+        Optional<Dentista> dentistaOptional = dentistaService.encotrarPorId(idDentista);
+
+        if(dentistaOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        var dentista = dentistaOptional.get();
+        dentista.setNomePessoa(dentistaDTO.nomeDentistaDto());
+        dentista.setCpf(dentistaDTO.cpfDentistaDto());
+        dentista.setCro(dentistaDTO.croDentistaDto());
+        dentista.setEmailPessoa(dentistaDTO.emailDentistaDto());
+        dentista.setEspecialidade(dentistaDTO.especialidadeDentistaDto());
+
+        dentistaService.atualizarDentista(dentista);
+
+        return ResponseEntity.noContent().build();
+    }
 }
