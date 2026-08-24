@@ -57,9 +57,17 @@ public class PacienteController implements GenericController {
         return ResponseEntity.ok(lista);
     }
 
-    @DeleteMapping(params = "email")
-    public void deletaPorEmailController(@RequestParam(required = false) String email){
-        pacienteService.deletePorEmailService(email);
+    @DeleteMapping("{id}")
+    public ResponseEntity<Object> deletarPacienteController(@PathVariable("id") String id){
+        var idPaciente = UUID.fromString(id);
+        Optional<Paciente> pacienteOptional = pacienteService.obterPorId(idPaciente);
+
+        if(pacienteOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        pacienteService.deletarPorId(idPaciente);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")

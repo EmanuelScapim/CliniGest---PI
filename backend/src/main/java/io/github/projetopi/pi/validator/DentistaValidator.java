@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -15,25 +16,24 @@ public class DentistaValidator {
     private final DentistaRepository dentistaRepository;
 
     public void validaDentista(Dentista dentista){
-        if(dentistaExiste(dentista)){
-            throw new  RegistroDuplicadoException("Dentista já cadastrado");
+        if(pertenceAOutroDentista(dentistaRepository.findByCpf(dentista.getCpf()), dentista.getId())){
+            throw new RegistroDuplicadoException("CPF já cadastrado");
+        }
+
+        if(pertenceAOutroDentista(dentistaRepository.findByEmailPessoa(dentista.getEmailPessoa()), dentista.getId())){
+            throw new RegistroDuplicadoException("Email já cadastrado");
         }
     }
 
-    private boolean dentistaExiste(Dentista dentista) {
-            Optional<Dentista> dentistaEncontrado = dentistaRepository.findByEmailPessoaAndNomePessoaAndCpfAndDataNascimentoAndCroAndEspecialidade(
-                    dentista.getEmailPessoa(),
-                    dentista.getNomePessoa(),
-                    dentista.getCpf(),
-                    dentista.getDataNascimento(),
-                    dentista.getCro(),
-                    dentista.getEspecialidade()
-            );
-
-            if(dentista.getId() == null){
-                return dentistaEncontrado.isPresent();
-            }
-
-            return dentistaEncontrado.isPresent() &&  !dentista.getId().equals(dentistaEncontrado.get().getId()) ;
+    private boolean pertenceAOutroDentista(Optional<Dentista> dentistaEncontrado, UUID id) {
+        if(dentistaEncontrado.isEmpty()){
+            return false;
         }
+
+        if(id == null){
+            return true;
+        }
+
+        return !id.equals(dentistaEncontrado.get().getId());
     }
+}

@@ -4,6 +4,7 @@ package io.github.projetopi.pi.controller.common;
 import io.github.projetopi.pi.controller.dto.CampoDeErroDTO;
 import io.github.projetopi.pi.controller.dto.RespostaDeErroDTO;
 import io.github.projetopi.pi.exceptions.RegistroDuplicadoException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -33,6 +34,18 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public RespostaDeErroDTO handlerRegistroDuplicadoException(RegistroDuplicadoException e){
         return RespostaDeErroDTO.conflito(e.getMessage());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public RespostaDeErroDTO handlerDataIntegrityViolationException(DataIntegrityViolationException e){
+        return RespostaDeErroDTO.conflito("Registro em conflito com dados já existentes");
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public RespostaDeErroDTO handlerIllegalArgumentException(IllegalArgumentException e){
+        return RespostaDeErroDTO.respostaPadrao(e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)

@@ -47,13 +47,17 @@ public class DentistaController implements GenericController {
         return ResponseEntity.ok(lista);
     }
 
-    @DeleteMapping
-    public void deletarDentista(@RequestParam(value = "nome", required = false) String nome,
-                                @RequestParam(value = "cpf", required = false) String cpf,
-                                @RequestParam(value = "cro", required = false) String cro,
-                                @RequestParam(value = "email", required = false) String email){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarDentista(@PathVariable("id") String id){
+        var idDentista = UUID.fromString(id);
+        Optional<Dentista> dentistaOptional = dentistaService.encotrarPorId(idDentista);
 
-        dentistaService.deletarDentistaPorCpfOuId(cpf, cro, email, nome);
+        if(dentistaOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        dentistaService.deletarPorId(idDentista);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")

@@ -44,8 +44,8 @@ public class PacienteService {
     }
 
     @Transactional
-    public void deletePorEmailService(String email){
-        pacienteRepository.deleteByEmailPessoa(email);
+    public void deletarPorId(UUID id){
+        pacienteRepository.deleteById(id);
     }
 
     public void atualizarPaciente(Paciente paciente){
