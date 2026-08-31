@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 public class Dentista extends Pessoa{
 
-    @Column(name = "cro", length = 6, nullable = false, unique = true)
+    @Column(name = "cro", length = 12, nullable = false, unique = true)
     private String cro;
 
     @Column(name = "especialidade", length = 20, nullable = false)

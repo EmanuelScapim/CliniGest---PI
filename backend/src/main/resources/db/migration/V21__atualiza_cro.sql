@@ -1,0 +1,1 @@
+ALTER TABLE tb_dentista ALTER COLUMN cro TYPE varchar(12);

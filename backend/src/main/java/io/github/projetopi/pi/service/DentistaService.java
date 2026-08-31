@@ -1,0 +1,70 @@
+package io.github.projetopi.pi.service;
+
+
+import io.github.projetopi.pi.model.Dentista;
+import io.github.projetopi.pi.repository.DentistaRepository;
+import io.github.projetopi.pi.validator.DentistaValidator;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@Service
+@RequiredArgsConstructor
+public class DentistaService {
+
+    private final DentistaRepository dentistaRepository;
+    private final DentistaValidator dentistaValidator;
+
+    public Dentista cadastraDeentistaService(Dentista dentista){
+        dentistaValidator.validaDentista(dentista);
+        return dentistaRepository.save(dentista);
+    }
+
+    public List<Dentista> pesquisaByExample(String nome,
+                                            String cpf,
+                                            String cro,
+                                            String email,
+                                            String especialidade){
+        var dentista = new Dentista();
+        dentista.setNomePessoa(nome);
+        dentista.setCpf(cpf);
+        dentista.setCro(cro);
+        dentista.setEmailPessoa(email);
+        dentista.setEspecialidade(especialidade);
+
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreNullValues()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        Example<Dentista> dentistaExample = Example.of(dentista, matcher);
+
+        return dentistaRepository.findAll(dentistaExample);
+    }
+
+    @Transactional
+    public void deletarPorId(UUID id){
+        dentistaRepository.deleteById(id);
+    }
+
+    public void atualizarDentista(Dentista dentista){
+        if(dentista.getId() == null){
+            throw new IllegalArgumentException("Para atualizar é necessário que o paciente exista");
+        }
+
+        dentistaValidator.validaDentista(dentista);
+        dentistaRepository.save(dentista);
+    }
+
+    public Optional<Dentista> encotrarPorId(UUID id){
+        return dentistaRepository.findById(id);
+    }
+
+}
