@@ -73,7 +73,6 @@ public class PacienteController implements GenericController {
     @PutMapping("{id}")
     public ResponseEntity<Object> atualiazPacienteController(@PathVariable("id") String id, @RequestBody @Valid PacienteDTO pacienteDTO){
 
-
         var idPaciente = UUID.fromString(id);
         Optional<Paciente> pacienteOptional = pacienteService.obterPorId(idPaciente);
 
