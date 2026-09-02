@@ -42,7 +42,6 @@ public class GlobalExceptionHandler {
     public RespostaDeErroDTO handlerExclusaoNaoPermitidaException(ExclusaoNaoPermitidaException e){
         return RespostaDeErroDTO.conflito(e.getMessage());
     }
-
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public RespostaDeErroDTO handlerDataIntegrityViolationException(DataIntegrityViolationException e){
