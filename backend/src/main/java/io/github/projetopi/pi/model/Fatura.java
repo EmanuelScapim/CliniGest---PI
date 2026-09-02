@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -22,11 +23,15 @@ public class Fatura {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne(mappedBy = "fatura")
+    @OneToOne
+    @JoinColumn(name = "id_agendamento", nullable = false)
     private Agendamento agendamento;
 
     @Column(name = "valor_total", precision = 10, scale = 2)
     private BigDecimal valor_total;
+
+    @Column(name = "data_emissao", nullable = false)
+    private LocalDate dataEmissao;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -45,12 +50,13 @@ public class Fatura {
     public Fatura() {
     }
 
-    public Fatura(UUID id, BigDecimal valor_total, Agendamento agendamento,
+    public Fatura(UUID id, BigDecimal valor_total, Agendamento agendamento, LocalDate dataEmissao,
                   StatusPagamento statusPagamento, ModoPagamento modoPagamento,
                   Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.valor_total = valor_total;
         this.agendamento = agendamento;
+        this.dataEmissao = dataEmissao;
         this.statusPagamento = statusPagamento;
         this.modoPagamento = modoPagamento;
         this.dataCriacao = dataCriacao;
