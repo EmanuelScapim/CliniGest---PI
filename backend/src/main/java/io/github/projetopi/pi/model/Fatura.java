@@ -23,7 +23,7 @@ public class Fatura {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_agendamento", nullable = false)
     private Agendamento agendamento;
 

@@ -48,7 +48,7 @@ public class Agendamento {
     @Column(name = "Observacao", columnDefinition = "TEXT")
     private String observacao;
 
-    @OneToOne(mappedBy = "agendamento")
+    @OneToOne(mappedBy = "agendamento", fetch = FetchType.LAZY)
     private Fatura fatura;
 
     @Column(name = "data_criacao", insertable = false, updatable = false)
