@@ -3,6 +3,7 @@ package io.github.projetopi.pi.controller.common;
 
 import io.github.projetopi.pi.controller.dto.CampoDeErroDTO;
 import io.github.projetopi.pi.controller.dto.RespostaDeErroDTO;
+import io.github.projetopi.pi.exceptions.ExclusaoNaoPermitidaException;
 import io.github.projetopi.pi.exceptions.RegistroDuplicadoException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RegistroDuplicadoException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public RespostaDeErroDTO handlerRegistroDuplicadoException(RegistroDuplicadoException e){
+        return RespostaDeErroDTO.conflito(e.getMessage());
+    }
+
+    @ExceptionHandler(ExclusaoNaoPermitidaException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public RespostaDeErroDTO handlerExclusaoNaoPermitidaException(ExclusaoNaoPermitidaException e){
         return RespostaDeErroDTO.conflito(e.getMessage());
     }
 
