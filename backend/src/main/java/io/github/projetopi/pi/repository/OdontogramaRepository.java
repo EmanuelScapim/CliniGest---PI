@@ -6,4 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface OdontogramaRepository extends JpaRepository<Odontograma, UUID> {
+
+    boolean existsByPacienteId(UUID pacienteId);
+
 }
