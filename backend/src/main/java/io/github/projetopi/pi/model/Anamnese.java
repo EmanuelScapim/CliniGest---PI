@@ -19,7 +19,7 @@ public class Anamnese {
     @Column(name = "id")
     private UUID id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_paciente", nullable = false)
     private Paciente paciente;
 
@@ -40,7 +40,7 @@ public class Anamnese {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataRegistro;
 
-    @OneToOne(mappedBy = "anamnese")
+    @OneToOne(mappedBy = "anamnese", fetch = FetchType.LAZY)
     private Prontuario prontuario;
 
     public Anamnese() {
