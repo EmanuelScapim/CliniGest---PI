@@ -41,6 +41,10 @@ public class Agendamento {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataHora;
 
+    @Column(name = "data_hora_fim", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    private Instant dataHoraFim;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "Status", length = 30, nullable = false)
     private StatusAgendamento statusAgendamento;
@@ -48,8 +52,7 @@ public class Agendamento {
     @Column(name = "Observacao", columnDefinition = "TEXT")
     private String observacao;
 
-    @OneToOne
-    @JoinColumn(name = "id_fatura", nullable = false)
+    @OneToOne(mappedBy = "agendamento", fetch = FetchType.LAZY)
     private Fatura fatura;
 
     @Column(name = "data_criacao", insertable = false, updatable = false)
@@ -62,13 +65,14 @@ public class Agendamento {
     public Agendamento() {
     }
 
-    public Agendamento(UUID id, Paciente paciente, Dentista dentista, Instant dataHora,
+    public Agendamento(UUID id, Paciente paciente, Dentista dentista, Instant dataHora, Instant dataHoraFim,
                        String observacao, Fatura fatura, StatusAgendamento statusAgendamento,
                        Set<Tratamento> tratamentos, Instant dataCriacao, Instant dataAtualizacao) {
         this.id = id;
         this.paciente = paciente;
         this.dentista = dentista;
         this.dataHora = dataHora;
+        this.dataHoraFim = dataHoraFim;
         this.observacao = observacao;
         this.fatura = fatura;
         this.statusAgendamento = statusAgendamento;

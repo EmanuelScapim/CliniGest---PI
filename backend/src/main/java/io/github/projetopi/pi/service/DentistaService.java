@@ -1,7 +1,10 @@
 package io.github.projetopi.pi.service;
 
 
+import io.github.projetopi.pi.exceptions.ExclusaoNaoPermitidaException;
 import io.github.projetopi.pi.model.Dentista;
+import io.github.projetopi.pi.model.enums.StatusAgendamento;
+import io.github.projetopi.pi.repository.AgendamentoRepository;
 import io.github.projetopi.pi.repository.DentistaRepository;
 import io.github.projetopi.pi.validator.DentistaValidator;
 import lombok.RequiredArgsConstructor;
@@ -10,16 +13,22 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class DentistaService {
 
+    private static final Set<StatusAgendamento> STATUS_BLOQUEIA_EXCLUSAO =
+            EnumSet.of(StatusAgendamento.AGUARDANDO_CONFIRMACAO, StatusAgendamento.CONFIRMADO);
+
     private final DentistaRepository dentistaRepository;
     private final DentistaValidator dentistaValidator;
+    private final AgendamentoRepository agendamentoRepository;
 
     public Dentista cadastraDeentistaService(Dentista dentista){
         dentistaValidator.validaDentista(dentista);
@@ -51,6 +60,10 @@ public class DentistaService {
 
     @Transactional
     public void deletarPorId(UUID id){
+        if(agendamentoRepository.existsByDentistaIdAndStatusAgendamentoIn(id, STATUS_BLOQUEIA_EXCLUSAO)){
+            throw new ExclusaoNaoPermitidaException("Dentista possui agendamento aguardando confirmação ou confirmado e não pode ser excluído");
+        }
+
         dentistaRepository.deleteById(id);
     }
 
