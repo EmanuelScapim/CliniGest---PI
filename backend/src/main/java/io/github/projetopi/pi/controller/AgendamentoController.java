@@ -76,6 +76,7 @@ public class AgendamentoController implements GenericController {
 
         var agendamento = agendamentoOptional.get();
         agendamento.setDataHora(dto.dataHoraDto());
+        agendamento.setDataHoraFim(dto.dataHoraFimDto());
         agendamento.setStatusAgendamento(dto.statusAgendamentoDto());
         agendamento.setObservacao(dto.observacaoDto());
 

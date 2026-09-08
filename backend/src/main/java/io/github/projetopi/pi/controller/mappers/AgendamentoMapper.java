@@ -15,6 +15,7 @@ public interface AgendamentoMapper {
 
     @Mapping(source = "idDto", target = "id")
     @Mapping(source = "dataHoraDto", target = "dataHora")
+    @Mapping(source = "dataHoraFimDto", target = "dataHoraFim")
     @Mapping(source = "statusAgendamentoDto", target = "statusAgendamento")
     @Mapping(source = "observacaoDto", target = "observacao")
     @Mapping(target = "paciente", ignore = true)
@@ -28,6 +29,7 @@ public interface AgendamentoMapper {
     @Mapping(source = "dentista.id", target = "dentistaIdDto")
     @Mapping(source = "tratamentos", target = "tratamentoIdsDto")
     @Mapping(source = "dataHora", target = "dataHoraDto")
+    @Mapping(source = "dataHoraFim", target = "dataHoraFimDto")
     @Mapping(source = "statusAgendamento", target = "statusAgendamentoDto")
     @Mapping(source = "observacao", target = "observacaoDto")
     AgendamentoDTO toDTO(Agendamento agendamento);

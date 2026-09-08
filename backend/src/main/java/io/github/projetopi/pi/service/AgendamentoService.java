@@ -8,6 +8,7 @@ import io.github.projetopi.pi.repository.AgendamentoRepository;
 import io.github.projetopi.pi.repository.DentistaRepository;
 import io.github.projetopi.pi.repository.PacienteRepository;
 import io.github.projetopi.pi.repository.TratamentoRepository;
+import io.github.projetopi.pi.validator.AgendamentoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +27,13 @@ public class AgendamentoService {
     private final PacienteRepository pacienteRepository;
     private final DentistaRepository dentistaRepository;
     private final TratamentoRepository tratamentoRepository;
+    private final AgendamentoValidator agendamentoValidator;
 
     public Agendamento cadastrarAgendamento(Agendamento agendamento, UUID pacienteId, UUID dentistaId, Set<UUID> tratamentoIds){
         agendamento.setPaciente(buscarPaciente(pacienteId));
         agendamento.setDentista(buscarDentista(dentistaId));
         agendamento.setTratamentos(buscarTratamentos(tratamentoIds));
+        agendamentoValidator.validaConflito(agendamento);
         return agendamentoRepository.save(agendamento);
     }
 
@@ -59,6 +62,7 @@ public class AgendamentoService {
         agendamento.setPaciente(buscarPaciente(pacienteId));
         agendamento.setDentista(buscarDentista(dentistaId));
         agendamento.setTratamentos(buscarTratamentos(tratamentoIds));
+        agendamentoValidator.validaConflito(agendamento);
         agendamentoRepository.save(agendamento);
     }
 

@@ -25,6 +25,9 @@ public record AgendamentoDTO(
         Instant dataHoraDto,
 
         @NotNull(message = "Campo obrigatório")
+        Instant dataHoraFimDto,
+
+        @NotNull(message = "Campo obrigatório")
         StatusAgendamento statusAgendamentoDto,
 
         @Size(max = 500, message = "A observação não atende os padrões exigidos")
