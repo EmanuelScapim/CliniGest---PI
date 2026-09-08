@@ -3,6 +3,7 @@ package io.github.projetopi.pi.service;
 import io.github.projetopi.pi.exceptions.ExclusaoNaoPermitidaException;
 import io.github.projetopi.pi.model.Material;
 import io.github.projetopi.pi.repository.MaterialRepository;
+import io.github.projetopi.pi.validator.MaterialValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -18,8 +19,10 @@ import java.util.UUID;
 public class MaterialService {
 
     private final MaterialRepository materialRepository;
+    private final MaterialValidator materialValidator;
 
     public Material cadastrarMaterial(Material material){
+        materialValidator.validaMaterial(material);
         return materialRepository.save(material);
     }
 
@@ -52,6 +55,7 @@ public class MaterialService {
             throw new IllegalArgumentException("Para atualizar é necessário que o material exista");
         }
 
+        materialValidator.validaMaterial(material);
         materialRepository.save(material);
     }
 
