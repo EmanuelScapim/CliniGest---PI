@@ -20,7 +20,7 @@ public class Odontograma {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_paciente", nullable = false)
     private Paciente paciente;
 
@@ -32,7 +32,7 @@ public class Odontograma {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataCriacao;
 
-    @OneToOne(mappedBy = "odontograma")
+    @OneToOne(mappedBy = "odontograma", fetch = FetchType.LAZY)
     private Prontuario prontuario;
 
     public Odontograma() {

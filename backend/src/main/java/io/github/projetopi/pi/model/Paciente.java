@@ -15,16 +15,16 @@ import java.util.Set;
 @Setter
 public class Paciente extends Pessoa {
 
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente", fetch = FetchType.LAZY)
     private Anamnese anamnese;
 
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente", fetch = FetchType.LAZY)
     private Odontograma odontograma;
 
     @OneToMany(mappedBy = "paciente")
     private Set<Agendamento> agendamento = new HashSet<>();
 
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente", fetch = FetchType.LAZY)
     private Prontuario prontuario;
 
     public Paciente() {

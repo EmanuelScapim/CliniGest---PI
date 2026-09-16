@@ -13,6 +13,8 @@ import java.util.UUID;
 
 public interface AnamneseRepository extends JpaRepository<Anamnese, UUID> {
 
+    boolean existsByPacienteId(UUID pacienteId);
+
     @Query("select p from Anamnese a join a.paciente p")
     List<Paciente> listarPacientesAnamnese();
 
