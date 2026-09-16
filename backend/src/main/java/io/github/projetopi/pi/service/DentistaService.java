@@ -7,6 +7,7 @@ import io.github.projetopi.pi.model.enums.StatusAgendamento;
 import io.github.projetopi.pi.repository.AgendamentoRepository;
 import io.github.projetopi.pi.repository.DentistaRepository;
 import io.github.projetopi.pi.validator.DentistaValidator;
+import io.github.projetopi.pi.validator.PessoaValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -28,9 +29,11 @@ public class DentistaService {
 
     private final DentistaRepository dentistaRepository;
     private final DentistaValidator dentistaValidator;
+    private final PessoaValidator pessoaValidator;
     private final AgendamentoRepository agendamentoRepository;
 
     public Dentista cadastraDeentistaService(Dentista dentista){
+        pessoaValidator.validaCpf(dentista);
         dentistaValidator.validaDentista(dentista);
         return dentistaRepository.save(dentista);
     }
@@ -72,6 +75,7 @@ public class DentistaService {
             throw new IllegalArgumentException("Para atualizar é necessário que o paciente exista");
         }
 
+        pessoaValidator.validaCpf(dentista);
         dentistaValidator.validaDentista(dentista);
         dentistaRepository.save(dentista);
     }
