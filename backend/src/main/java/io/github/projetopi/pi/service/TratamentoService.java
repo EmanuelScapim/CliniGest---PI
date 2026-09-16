@@ -3,6 +3,7 @@ package io.github.projetopi.pi.service;
 import io.github.projetopi.pi.exceptions.ExclusaoNaoPermitidaException;
 import io.github.projetopi.pi.model.Tratamento;
 import io.github.projetopi.pi.repository.TratamentoRepository;
+import io.github.projetopi.pi.validator.TratamentoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -18,8 +19,10 @@ import java.util.UUID;
 public class TratamentoService {
 
     private final TratamentoRepository tratamentoRepository;
+    private final TratamentoValidator tratamentoValidator;
 
     public Tratamento cadastrarTratamento(Tratamento tratamento){
+        tratamentoValidator.validaTratamento(tratamento);
         return tratamentoRepository.save(tratamento);
     }
 
@@ -53,6 +56,7 @@ public class TratamentoService {
             throw new IllegalArgumentException("Para atualizar é necessário que o tratamento exista");
         }
 
+        tratamentoValidator.validaTratamento(tratamento);
         tratamentoRepository.save(tratamento);
     }
 
