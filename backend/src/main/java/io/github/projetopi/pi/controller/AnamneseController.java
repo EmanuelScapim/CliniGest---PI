@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/anamneses")
+@RequestMapping("/anamnese")
 @RequiredArgsConstructor
 public class AnamneseController implements GenericController {
 

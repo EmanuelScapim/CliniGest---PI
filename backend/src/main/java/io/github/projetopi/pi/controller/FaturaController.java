@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/faturas")
+@RequestMapping("/fatura")
 @RequiredArgsConstructor
 public class FaturaController implements GenericController {
 
