@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/dentistas")
+@RequestMapping("/dentista")
 @RequiredArgsConstructor
 public class DentistaController implements GenericController {
 
