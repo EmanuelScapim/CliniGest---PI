@@ -1,0 +1,15 @@
+
+
+input[type="checkbox"]{
+    width: auto;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6294e5;
+  background-color: white;
+}
+
+label{
+  font-size: ;
+}

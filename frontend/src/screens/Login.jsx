@@ -1,63 +1,57 @@
 import '../screens/css/Login.css'
+import '../components/buttons/LoginButton'
+import '../components/inputs/Label'
+import '../components/inputs/LoginInput'
+import '../components/inputs/Checkbox'
+import logoSvg from '../assets/Logo.svg';
+import LoginButton from '../components/buttons/LoginButton';
+import Label from '../components/inputs/Label';
+import LoginInput from '../components/inputs/LoginInput';
+import Checkbox from '../components/inputs/Checkbox'
+import ClinigestLogo from '../assets/ClinigestLogo.svg';
 
 export default function Login() {
+  const styles = {
+    logoDiv: {
+      padding: '2rem'
+    },
+    logoPhoto: {
+      width: '4rem',
+      height: '4rem'
+    }
+  }
   return (
     <>
-      <div className="top-left-logo">
-        <img src="../img/saco-logo.svg" alt="" />
+      <div className="clinigestLogo">
+        <img src={ClinigestLogo} alt="" />
       </div>
+      <div className="loginCard">
+        <div className="logo" style={styles.logoDiv}>
+          {/* <div id='logoPhoto' style={styles.logoPhoto}></div> */}
+          <img src={logoSvg} alt="" style={styles.logoPhoto} />
+          <h1>Logomarca</h1>
+        </div>
 
-      <main className="login-container">
-        <div className="login-card">
-          <div className="logo-area">
-            <img
-              src="../img/login-logo.svg"
-              alt=""
-              className="css-logo-placeholder"
-            />
-            <h1>Logomarca</h1>
+        <form className="login-form">
+
+          <LoginInput name={'usuario'} id={'user'} placeholder={"Insira seu usuário"} label={'Usuário:'}></LoginInput>
+          <LoginInput type={'password'} name={'senha'} id={'password'} placeholder={'Insira sua senha'} label={'Senha:'}></LoginInput>
+
+          <div className="form-options">
+            <div className="checkboxDiv" style={styles.checkboxDiv}>
+              <Checkbox id={'checkbox'}></Checkbox>
+              <Label htmlFor={'Checkbox'} style={styles.checkboxLabel}>Lembrar de mim</Label>
+            </div>
+            <a href="#" className="forgot-password" style={styles.esqueciMinhaSenhaLabel}>
+              Esqueci minha senha &gt;
+            </a>
           </div>
 
-          <form className="login-form">
-            <div className="form-group">
-              <label htmlFor="username">Usuário</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Insira seu usuário"
-                required
-              />
-            </div>
+          <LoginButton></LoginButton>
 
-            <div className="form-group">
-              <label htmlFor="password">Senha</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Insira sua senha"
-                required
-              />
-            </div>
+        </form>
+      </div>
 
-            <div className="form-options">
-              <label className="checkbox-container">
-                <input type="checkbox" name="remember" />
-                <span className="checkmark"></span>
-                Lembre-se de mim
-              </label>
-              <a href="#" className="forgot-password">
-                Esqueci minha senha &gt;
-              </a>
-            </div>
-
-            <button type="submit" className="btn-primary">
-              Entrar &gt;
-            </button>
-          </form>
-        </div>
-      </main>
     </>
   );
 }
