@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import '../screens/css/Login.css'
+import style from '../screens/css/Login.module.css'
 import '../components/buttons/LoginButton'
 import '../components/inputs/Label'
 import '../components/inputs/LoginInput'
@@ -31,28 +31,28 @@ export default function Login() {
     }
   }
   return (
-    <>
-      <div className="clinigestLogo">
+    <div className={style.body}>
+      <div className={style.clinigestLogo}>
         <img src={ClinigestLogo} alt="" />
       </div>
-      <div className="loginCard">
-        <div className="logo" style={styles.logoDiv}>
+      <div className={style.loginCard}>
+        <div className={style.logo} style={styles.logoDiv}>
           {/* <div id='logoPhoto' style={styles.logoPhoto}></div> */}
           <img src={logoSvg} alt="" style={styles.logoPhoto} />
           <h1>Logomarca</h1>
         </div>
 
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className={style.loginForm} onSubmit={handleSubmit}>
 
           <LoginInput name={'usuario'} id={'user'} placeholder={"Insira seu usuário"} label={'Usuário:'}></LoginInput>
           <LoginInput type={'password'} name={'senha'} id={'password'} placeholder={'Insira sua senha'} label={'Senha:'}></LoginInput>
 
-          <div className="form-options">
-            <div className="checkboxDiv" style={styles.checkboxDiv}>
+          <div className={style.formOptions}>
+            <div className={style.checkboxDiv} style={styles.checkboxDiv}>
               <Checkbox id={'checkbox'}></Checkbox>
               <Label htmlFor={'Checkbox'} style={styles.checkboxLabel}>Lembrar de mim</Label>
             </div>
-            <a href="#" className="forgot-password" style={styles.esqueciMinhaSenhaLabel}>
+            <a href="#" className={style.forgotPassword} style={styles.esqueciMinhaSenhaLabel}>
               Esqueci minha senha &gt;
             </a>
           </div>
@@ -62,6 +62,6 @@ export default function Login() {
         </form>
       </div>
 
-    </>
+    </div>
   );
 }
