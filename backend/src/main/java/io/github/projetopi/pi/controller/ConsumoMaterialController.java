@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/consumo-materiais")
+@RequestMapping("/consumo-material")
 @RequiredArgsConstructor
 public class ConsumoMaterialController implements GenericController {
 

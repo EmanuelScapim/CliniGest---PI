@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import '../screens/css/Login.css'
 import '../components/buttons/LoginButton'
 import '../components/inputs/Label'
@@ -11,6 +12,15 @@ import Checkbox from '../components/inputs/Checkbox'
 import ClinigestLogo from '../assets/ClinigestLogo.svg';
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Evita que a página recarregue
+    
+    // Redireciona para a rota da tela de início
+    navigate('/inicio');
+  };
+
   const styles = {
     logoDiv: {
       padding: '2rem'
@@ -32,7 +42,7 @@ export default function Login() {
           <h1>Logomarca</h1>
         </div>
 
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
 
           <LoginInput name={'usuario'} id={'user'} placeholder={"Insira seu usuário"} label={'Usuário:'}></LoginInput>
           <LoginInput type={'password'} name={'senha'} id={'password'} placeholder={'Insira sua senha'} label={'Senha:'}></LoginInput>

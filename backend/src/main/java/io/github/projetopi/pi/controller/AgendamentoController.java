@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/agendamentos")
+@RequestMapping("/agendamento")
 @RequiredArgsConstructor
 public class AgendamentoController implements GenericController {
 
