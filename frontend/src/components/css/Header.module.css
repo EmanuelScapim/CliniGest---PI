@@ -1,0 +1,139 @@
+.general {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--textColorLight);
+  position: absolute;
+  top: 0;
+  width: 100dvw;
+}
+
+.header a{
+  text-decoration: none;
+  color: var(--textColorLight);
+}
+
+.header button{
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--textColorLight);
+  font-size: 1.5rem;
+}
+
+:root {
+  --headerBackgroundColor: #306df3;
+  --textColorLight: #fff;
+}
+
+.header {
+  background-color: var(--headerBackgroundColor);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.primeiraParte,
+.segundaParte {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.primeiraParte {
+  gap: 1.5rem;
+}
+.menuHamburguer{
+  font-size: 1.5rem;
+  color: var(--textColorLight);
+}
+.menuHamburguer:hover {
+  cursor: pointer;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  img {
+    width: 2rem;
+  }
+  p {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+}
+.botaoUsuario {
+  display: flex;
+  gap: 1rem;
+  p {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  small {
+    font-size: 0.7rem;
+  }
+}
+.imgUsuario {
+  font-size: 2rem;
+}
+.botaoUsuarioSeta {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+/* RESPONSIVIDADE */
+
+/* TABLET */
+
+@media (max-width: 900px) {
+}
+
+/* celular 576px */
+
+@media (max-width: 450px) {
+  .header {
+    padding: 1.15rem 1rem;
+    img{
+      width: 1rem;
+    }
+  }
+  .primeiraParte {
+    gap: 1rem;
+  }
+  .logo {
+    gap: .5rem;
+    img {
+      width: 1.8rem;
+    }
+    p {
+      font-size: 0.7rem;
+    }
+  }
+
+  .botaoUsuario {
+    display: flex;
+    gap: 0.3rem;
+    p {
+      display: none;
+    }
+    small {
+      display: none;
+    }
+    img{
+      width: 1rem;
+    }
+  }
+  .imgUsuario{
+    min-width: 1.5rem;
+  }
+}
+
+/* celular 340px */
+@media (max-width: 340px) {
+}
