@@ -1,0 +1,91 @@
+/* SIDEBAR */
+/* GERAL */
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: helvetica;
+  box-sizing: border-box;
+}
+/* O arquivo que está dentro do iframe precisa ter as margens zeradas. Se você não fizer isso, o navegador adiciona cerca de 8px de margem por padrão. */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Remove barras de rolagem desnecessárias */
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  background-color: #648fec;
+  height: 100vh;
+}
+
+nav ul {
+  padding-top: 25px;
+  list-style: none;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+}
+
+nav ul img {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  margin-left: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+nav ul li a:hover {
+  color: #e2e2e2;
+}
+
+nav ul .other {
+  margin-top: 15px;
+}
+
+hr {
+  border: solid #fff 1px;
+  margin: 15px;
+}
+nav .saco {
+  margin-top: auto;
+  margin-bottom: 15%;
+  margin-left: auto;
+  margin-right: auto;
+}
+nav .saco img {
+  max-width: 100px;
+}
+
+/* Responsividade */
+/* tablet */
+@media (max-width: 51px) {
+  nav .saco {
+    display: none;
+  }
+  nav ul li a {
+    display: none;
+  }
+  nav ul li {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  nav ul li a img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
