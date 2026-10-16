@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../components/css/Sidebar.css';
-
+// import '../components/css/Sidebar.css';
+import { BiUser, BiDetail, BiMoneyWithdraw, BiGroup, BiCalendar, BiLogoWhatsapp, BiReceipt, BiSlider } from "react-icons/bi";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
+import css from '../components/css/Sidebar.module.css';
 // Importação das imagens para o bundler (Vite)
 // import personIcon from '../img/person.svg';
 // import bookmarkIcon from '../img/bookmark.svg';
@@ -9,44 +12,48 @@ import '../components/css/Sidebar.css';
 // import calendarIcon from '../img/calendar.svg';
 // import whatsapIcon from '../img/whatsap.svg';
 // import configIcon from '../img/config.svg';
-// import sacoLogo from '../img/saco-logo.svg';
+import Logo from '../assets/ClinigestLogo.svg';
 
 export default function Sidebar() {
   return (
-    <nav className="sidebar">
+    <nav className={css.sidebar}>
       <ul>
         <li>
-          <img src='' alt="Pacientes" />
+          <BiGroup className={css.icon}></BiGroup>
           <Link to="/pacientes">Pacientes</Link>
         </li>
         <li>
-          <img src='' alt="Consultas" />
+          <BiReceipt className={css.icon}></BiReceipt>
           <Link to="/consultas">Consultas</Link>
         </li>
         <li>
-          <img src='' alt="Financeiro" />
+          <RiMoneyDollarCircleLine className={css.icon}></RiMoneyDollarCircleLine>
           <Link to="/financeiro">Financeiro</Link>
         </li>
         <li>
-          <img src='' alt="Calendário" />
+          <BiCalendar className={css.icon}></BiCalendar>
           <Link to="/calendario">Calendário</Link>
         </li>
         <li>
-          <img src='' alt="WhatsApp" />
+          <BiLogoWhatsapp className={css.icon}></BiLogoWhatsapp>
           <Link to="/whatsapp">WhatsApp</Link>
         </li>
 
-        <hr />
+        <div className={css.separator}>
+          <small className={css.small}>OUTROS</small>
+        </div>
 
-        <li className="other">
-          <img src='' alt="Configurações" />
+        <li className={css.other}>
+          <IoSettingsOutline className={css.icon}></IoSettingsOutline>
           <Link to="/cadastro">Configurações</Link>
         </li>
       </ul>
 
-      <Link to="/" className="saco">
-        <img src='' alt="Logo Saco" />
+      <Link to="/" className={css.logo}>
+        <img src={Logo} alt="Logo Saco" />
       </Link>
     </nav>
+
+
   );
 }

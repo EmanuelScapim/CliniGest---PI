@@ -1,0 +1,24 @@
+/* Container que ocupa 100% da tela */
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #f3f4f6; /* Fundo cinza claro da área de conteúdo */
+}
+
+/* Área abaixo do Header organizada lado a lado */
+.mainLayout {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 60px); /* Desconta a altura do Header */
+  overflow: hidden;
+}
+
+/* Área central onde fica o conteúdo das telas */
+.contentArea {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto; /* Permite rolar apenas o conteúdo da tela */
+}

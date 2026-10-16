@@ -1,0 +1,84 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #648fec;
+  height: 100dvh;
+  padding: 3rem 0;
+  left: 0;
+  position: absolute;
+  hr{
+    margin: .5rem 0;
+    color: #fff;
+    
+  }
+  ul {
+    padding-top: 1.5rem;
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: .8rem;
+      padding: .8rem 1.7rem ;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.sidebar ul li:hover{
+  background-color: #dadada2b;
+  cursor: pointer;
+}
+
+.separator{
+  /* padding: 0 .9rem; */
+  margin: .9rem;
+  border-top: 1px solid #fff;
+}
+
+.small {
+  color: #fff;
+  font-size: x-small;
+}
+
+.icon {
+  color: #fff;
+  font-size: larger;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 2rem;
+  img {
+    width: 6rem;
+  }
+}
+
+/* Responsividade */
+/* tablet */
+@media (max-width: 51px) {
+  nav .saco {
+    display: none;
+  }
+  nav ul li a {
+    display: none;
+  }
+  nav ul li {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  nav ul li a img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

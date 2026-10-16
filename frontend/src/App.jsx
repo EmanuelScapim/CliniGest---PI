@@ -5,18 +5,16 @@ import DashboardLayout from './hooks/DashboardLayout';
 
 function App() {
   return (
-    <main>
-      <Routes>
-        {/* Tela sem Sidebar */}
-        <Route path="/" element={<Login />} />
+    <Routes>
+      {/* Tela de Login sem Header/Sidebar */}
+      <Route path="/" element={<Login />} />
 
-        {/* Rotas com Sidebar através do Layout */}
-        <Route element={<DashboardLayout />}>
-          <Route path="/inicio" element={<TelaInicio />} />
-          {/* Futuras telas: <Route path="/pacientes" element={<Pacientes />} /> */}
-        </Route>
-      </Routes>
-    </main>
+      {/* Tela com Layout completo */}
+      <Route element={<DashboardLayout />}>
+        <Route path="/inicio" element={<TelaInicio />} />
+        {/* Futuras telas como /pacientes entrarão aqui */}
+      </Route>
+    </Routes>
   );
 }
 
