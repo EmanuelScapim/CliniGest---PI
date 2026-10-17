@@ -1,9 +1,65 @@
 /* Import do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+input:not([type="checkbox"]) {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+  color: #555;
+  transition: border-color 0.2s;
+}
+input:not([type="checkbox"]):focus {
+  border-color: #6294e5;
+  outline: none;
+  background-color: #fff;
+}
+button {
+  transition: .3s linear;
+}
+button:hover {
+  opacity: 0.9;
+}
+button:active {
+  transform: scale(0.97);
+}
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.3rem;
+  height: 1.3rem;
+  padding: 0;
+  background-color: #f2f2f2; 
+  border: 1px solid #dfdfdf;     
+  border-radius: 4px;           
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+input[type="checkbox"]:hover {
+  background-color: #ececec;
+}
+input[type="checkbox"]:checked {
+  background-color: #6c94e8; 
+  border-color: #6c94e8;
+}
+input[type="checkbox"]:checked::after {
+  content: '-';
+  color: #fff;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
 }

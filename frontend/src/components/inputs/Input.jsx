@@ -1,21 +1,10 @@
-import '../css/General.css'
-
-export default function LoginInput({ type, id, name, placeholder, label }) {
+export default function Input({ type, id, name, placeholder, label, className }) {
     const styles = {
         label: {
             display: 'block',
             fontWeight: 'bold',
             color: '#333',
             margin: '1rem 0 .5rem'
-        },
-        input: {
-            width: '100%',
-            padding: '.8rem',
-            border: '1px solid #a2a2a2',
-            borderRadius: '8px',
-            backgroundColor: '#f2f2f2',
-            color: '#555',
-            transition: 'border-color 0.2s'
         }
     };
     return (
@@ -27,7 +16,7 @@ export default function LoginInput({ type, id, name, placeholder, label }) {
                 name={name}
                 placeholder={placeholder}
                 required
-                style={styles.input}
+                className={className}
             />
         </div>
     )

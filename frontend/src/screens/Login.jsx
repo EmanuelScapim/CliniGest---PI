@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import style from '../screens/css/Login.module.css'
 import '../components/buttons/LoginButton'
 import '../components/inputs/Label'
-import '../components/inputs/LoginInput'
+import '../components/inputs/Input'
 import '../components/inputs/Checkbox'
 import logoSvg from '../assets/Logo.svg';
 import LoginButton from '../components/buttons/LoginButton';
 import Label from '../components/inputs/Label';
-import LoginInput from '../components/inputs/LoginInput';
+import Input from '../components/inputs/Input';
 import Checkbox from '../components/inputs/Checkbox'
 import ClinigestLogo from '../assets/ClinigestLogo.svg';
 
@@ -37,15 +37,14 @@ export default function Login() {
       </div>
       <div className={style.loginCard}>
         <div className={style.logo} style={styles.logoDiv}>
-          {/* <div id='logoPhoto' style={styles.logoPhoto}></div> */}
           <img src={logoSvg} alt="" style={styles.logoPhoto} />
           <h1>Logomarca</h1>
         </div>
 
         <form className={style.loginForm} onSubmit={handleSubmit}>
 
-          <LoginInput name={'usuario'} id={'user'} placeholder={"Insira seu usuário"} label={'Usuário:'}></LoginInput>
-          <LoginInput type={'password'} name={'senha'} id={'password'} placeholder={'Insira sua senha'} label={'Senha:'}></LoginInput>
+          <Input name={'usuario'} id={'user'} placeholder={"Insira seu usuário"} label={'Usuário:'}></Input>
+          <Input type={'password'} name={'senha'} id={'password'} placeholder={'Insira sua senha'} label={'Senha:'}></Input>
 
           <div className={style.formOptions}>
             <div className={style.checkboxDiv} style={styles.checkboxDiv}>

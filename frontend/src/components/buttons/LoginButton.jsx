@@ -1,5 +1,3 @@
-import '../css/General.css'
-
 export default function LoginButton() {
     const styles = {
         btnType1: {
@@ -11,8 +9,7 @@ export default function LoginButton() {
             color: 'white',
             fontSize: '16px',
             fontWeight: '500',
-            cursor: 'pointer',
-            transition: 'background-color 0.2s'
+            cursor: 'pointer'
         },
     }
     return (
