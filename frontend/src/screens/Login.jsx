@@ -33,7 +33,7 @@ export default function Login() {
   return (
     <div className={style.body}>
       <div className={style.clinigestLogo}>
-        <img src={ClinigestLogo} alt="" />
+        <img src={ClinigestLogo} alt="Logo Clinigest" />
       </div>
       <div className={style.loginCard}>
         <div className={style.logo} style={styles.logoDiv}>

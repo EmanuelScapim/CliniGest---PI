@@ -1,6 +1,23 @@
 /* Import do Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 
+:root{
+  --AccentColor: #6c94e8;
+  --TextColorLight: #fff;
+  --TextColorDark: #454545;
+  --TitleColor: #111;
+  --BackgroundColor: #fff;
+  --InputBackgroundColor: #f2f2f2;
+  --InputInFocusBackgroundColor: #fff;
+  --InputHover: #ececec;
+  --InputTextColor: #555;
+  --Border: 1px solid #dfdfdf;
+  --BorderRadius: .5rem;
+  --Transition: .2s linear;
+  --ButtonHover: .9;
+  --ButtonActive: scale(0.97);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,25 +27,25 @@
 input:not([type="checkbox"]) {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #dfdfdf;
-  border-radius: 8px;
-  background-color: #f2f2f2;
-  color: #555;
-  transition: border-color 0.2s;
+  border: var(--Border);
+  border-radius: var(--BorderRadius);
+  background-color: var(--InputBackgroundColor);
+  color: var(--InputTextColor);
+  transition: var(--Transition);
 }
 input:not([type="checkbox"]):focus {
-  border-color: #6294e5;
+  border-color: var(--AccentColor);
   outline: none;
-  background-color: #fff;
+  background-color: var(--InputInFocusBackgroundColor);
 }
 button {
-  transition: .3s linear;
+  transition: var(--Transition);
 }
 button:hover {
-  opacity: 0.9;
+  opacity: var(--ButtonHover);
 }
 button:active {
-  transform: scale(0.97);
+  transform: var(--ButtonActive);
 }
 input[type="checkbox"] {
   appearance: none;
@@ -36,26 +53,26 @@ input[type="checkbox"] {
   width: 1.3rem;
   height: 1.3rem;
   padding: 0;
-  background-color: #f2f2f2; 
-  border: 1px solid #dfdfdf;     
+  background-color: var(--InputBackgroundColor); 
+  border: var(--Border);     
   border-radius: 4px;           
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: all 0.2s ease;
+  transition: var(--Transition);
 }
 input[type="checkbox"]:hover {
-  background-color: #ececec;
+  background-color: var(--InputHover);
 }
 input[type="checkbox"]:checked {
-  background-color: #6c94e8; 
-  border-color: #6c94e8;
+  background-color: var(--AccentColor); 
+  border-color: var(--AccentColor);
 }
 input[type="checkbox"]:checked::after {
   content: '-';
-  color: #fff;
+  color: var(--TextColorLight);
   width: 4px;
   height: 8px;
   border: solid white;

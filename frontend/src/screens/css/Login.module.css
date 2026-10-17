@@ -26,14 +26,13 @@ h1 {
 }
 
 .loginCard {
-  background-color: white;
+  background-color: var(--BackgroundColor);
   padding: 6rem 4rem;
   border-radius: 2.5rem;
   text-align: center;
   width: 500px;
 }
 
-/* --- Formulário e Campos --- */
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -43,7 +42,6 @@ h1 {
   min-width: 0;
 }
 
-/* --- Opções do Formulário (Lembrar e Esqueci) --- */
 .formOptions {
   display: flex;
   justify-content: space-between;
@@ -59,34 +57,28 @@ h1 {
   gap: 0.5rem;
   Label {
     font-size: small;
+    color: var(--TextColorDark);
   }
 }
 
 .forgotPassword {
   font-size: small;
-  color: #555;
+  color: var(--TextColorDark);
   text-decoration: none;
+  transition: var(--Transition);
 }
 
 .forgotPassword:hover {
-  color: #3e6ec7;
+  color: var(--AccentColor);
 }
 
 /* --- Responsividade --- */
 @media (max-width: 576px) {
-  .top-left-logo {
+  .clinigestLogo {
     display: none;
   }
-  .login-container {
-    padding: 0;
-  }
-  .login-card {
-    padding: 40px 25px;
-    border-radius: 20px;
-  }
-
-  .form-options {
-    flex-direction: column;
-    align-items: flex-start;
+  .loginCard {
+    padding: 4rem 2rem;
+    border-radius: 1.8rem;
   }
 }
