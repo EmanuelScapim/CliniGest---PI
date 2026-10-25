@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 
 :root{
+  --HTMLBackgroundColor:#efefef;
   --AccentColor: #6c94e8;
   --TextColorLight: #fff;
   --TextColorDark: #454545;
@@ -23,6 +24,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+html{
+  background-color: var(--HTMLBackgroundColor);
 }
 main{
   padding: 5rem;

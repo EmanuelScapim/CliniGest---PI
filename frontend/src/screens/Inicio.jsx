@@ -5,60 +5,30 @@ import { BiFilter, BiUserPlus, BiTrash, BiSelectMultiple, BiSearch } from "react
 import { LuChevronsDownUp } from "react-icons/lu";
 import MiniBtnType1 from '../components/buttons/MiniButtonType1';
 import MiniBtnType2 from '../components/buttons/MiniButtonType2';
+import Searchbar from '../components/inputs/Searchbar'
 
 export default function Inicio() {
   return (
     <main>
       <form action="#" id="form">
-        {/* HEADER DA MAIN */}
-        <div className="title-header">
 
-          {/* TÍTULO DO HEADER */}
+        <div className="title-header">
           <a href="#">
             <h1>Pacientes</h1>
           </a>
 
-          {/* BOTÕES DE AÇÃO DO HEADER */}
           <div className="action-buttons" id="pac-action-buttons">
             <div id="searchbar-group">
-              <div id="searchbar-container">
-                <input
-                  type="text"
-                  placeholder="🔎︎  Pesquisar pacientes...  "
-                  id="searchbar"
-                />
-              </div>
-
-              {/* <button className="action-button" id="filtrar" type="button">
-                <BiFilter className='icon'></BiFilter>
-              </button> */}
-
+              <Searchbar></Searchbar>
               <MiniBtnType2>{<BiFilter className='icon'></BiFilter>}</MiniBtnType2>
             </div>
 
             <div id="desktop-actions">
               <a href="../telas/cadastro-pac.html" className="action-button" id="novoa">
-                {/* <button className="action-button" id="novo" type="button">
-                  <BiUserPlus className='icon'></BiUserPlus>
-                  <p>Novo</p>
-                </button> */}
                 <MiniBtnType1>{<BiUserPlus className='icon'></BiUserPlus>}Novo</MiniBtnType1>
               </a>
-
-              {/* <button className="action-button" id="excluir" type="button">
-                <BiTrash className='icon'></BiTrash>
-                <p>Excluir</p>
-              </button> */}
               <MiniBtnType2>{<BiTrash className='icon'></BiTrash>}Excluir</MiniBtnType2>
-              {/* <button className="action-button" id="ordenar" type="button">
-                <LuChevronsDownUp className='icon'></LuChevronsDownUp>
-                <p>Ordenar</p>
-              </button> */}
               <MiniBtnType2>{<LuChevronsDownUp className='icon'></LuChevronsDownUp>}Ordenar</MiniBtnType2>
-              {/* <button className="action-button" id="selecionar" type="button">
-                <BiSelectMultiple className='icon'></BiSelectMultiple>
-                <p>Selecionar</p>
-              </button> */}
               <MiniBtnType2>{<BiSelectMultiple className='icon'></BiSelectMultiple>}Selecionar</MiniBtnType2>
             </div>
 
