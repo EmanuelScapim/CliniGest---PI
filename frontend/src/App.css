@@ -24,6 +24,11 @@
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+main{
+  padding: 5rem;
+  padding-left: 13rem;
+  padding-right: 1.5rem;
+}
 input:not([type="checkbox"]) {
   width: 100%;
   padding: 0.8rem;

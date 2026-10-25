@@ -1,0 +1,86 @@
+/* MAIN */
+/* GERAL */
+:root {
+  --buttonColor: #fff;
+  --principalButtonColor: #648fec;
+  --buttonBorderColor: #a2a2a2;
+  --textColorWhite: #fff;
+  --textColorDark: #797979;
+  --cardColorWhite: #fff;
+}
+
+/* * {
+  padding: 0;
+  margin: 0;
+  font-family: helvetica;
+  box-sizing: border-box;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+a {
+  text-decoration: none;
+  color: #000;
+} */
+/* MAIN - HEADER DO TÍTULO PRINCIPAL */
+
+.title-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .icon{
+    font-size: 150%;
+  }
+}
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  img {
+    width: 0.9rem;
+  }
+  border-radius: 0.7rem;
+  background-color: var(--buttonColor);
+  border: 1px solid var(--buttonBorderColor);
+  cursor: pointer;
+}
+.action-button:hover {
+  background-color: #f2f2f2;
+}
+
+/* RESPONSIVIDADE */
+
+/* celular 576px */
+
+@media (max-width: 576px) {
+  main {
+    padding: 1rem;
+  }
+  .action-button {
+    padding: 0.6rem 0.7rem;
+  }
+  .title-header {
+    h1 {
+      font-size: 1.5rem;
+    }
+    padding-bottom: 1.3rem;
+  }
+}
