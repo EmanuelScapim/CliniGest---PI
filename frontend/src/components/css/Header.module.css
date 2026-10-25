@@ -5,10 +5,8 @@
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--textColorLight);
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100dvw;
+  position: relative;
+  width: 100%;
   z-index: 1;
 }
 
