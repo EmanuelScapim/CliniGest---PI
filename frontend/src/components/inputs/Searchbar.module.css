@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+  width: 16rem;
+  transition: width 0.2s ease;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 0.8rem;
+  z-index: 1;
+  color: #454545;
+  font-size: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

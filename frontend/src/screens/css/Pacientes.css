@@ -51,22 +51,24 @@ a{
   top: 0;
   right: 0;
   height: 100vh;
-  max-width: 90vw;
+  /* width: min(20rem, 90vw); */
   background-color: #e6e6e6; /* match left sidebar */
   box-shadow: -12px 0 30px rgba(0, 0, 0, 0.08);
   z-index: 950;
   transform: translateX(100%);
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   padding: 0.75rem;
   gap: 0.5rem;
   pointer-events: none;
+  visibility: hidden;
 }
 
 #mobile-sidebar.open {
   transform: translateX(0);
   pointer-events: auto;
+  visibility: visible;
 }
 
 #mobile-sidebar-backdrop {
@@ -78,12 +80,14 @@ a{
   background-color: rgba(0, 0, 0, 0);
   z-index: 900;
   transition:
-    background-color 0.25s ease,
-    visibility 0.25s ease,
-    opacity 0.25s ease;
+    background-color 0.3s ease-in-out,
+    visibility 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
+  padding: 0;
+  border: 0;
 }
 
 #mobile-sidebar-backdrop.visible {
@@ -100,18 +104,18 @@ a{
   padding-top: 0.5rem;
 }
 
-#mobile-menu-wrapper .action-button {
-  justify-content: flex-start;
+#mobile-action-menu .new-action-button,
+#mobile-action-menu .mobile-sidebar-button {
   width: 100%;
 }
-#mobile-menu-wrapper .action-button p {
-  margin: 0;
-}
-#menu-button {
+
+#mobile-action-menu .mobile-sidebar-button {
+  justify-content: flex-start;
+  padding-left: 1rem;
 }
 
 /* BOTOES DO HEADER DE TÍTULO - BOTAO ADICIONAR NOVO */
-#novoa{
+.new-action-button {
   background-color: transparent;
   padding: 0;
   margin: 0;
@@ -131,13 +135,13 @@ a{
   gap: 0.5rem;
 }
 
-#searchbar {
+/* #searchbar {
   height: 100%;
   padding: 0.5rem 0.8rem;
   border-radius: 0.7rem;
   background-color: var(--buttonColor);
   border: 1px solid var(--buttonBorderColor);
-}
+} */
 
 /* MAIN - CARDS */
 
@@ -208,6 +212,10 @@ a{
 /* celular 576px */
 
 @media (max-width: 576px) {
+  /* .title-header h1{
+    font-size: 150%;
+    color: red;
+  } */
   .action-button {
     p {
       display: contents;
@@ -243,5 +251,37 @@ a{
     width: 100%;
     right: 0;
     left: 0;
+  }
+  #searchbar-group .searchbar-container {
+    width: 3rem;
+  }
+
+  #searchbar-group .searchbar-container:focus-within {
+    width: 12rem;
+  }
+  #searchbar-group{
+    gap: .7rem;
+  }
+
+  #searchbar-group .searchbar {
+    height: 2.6rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  #pac-action-buttons .mobile-action-button {
+    width: 3rem;
+    height: 2.6rem;
+    padding: 0 !important;
+  }
+
+  #mobile-action-menu .new-action-button,
+  #mobile-action-menu .mobile-sidebar-button {
+    width: 100%;
+  }
+
+  #mobile-sidebar-close {
+    align-self: flex-end;
+    width: 100%;
   }
 }

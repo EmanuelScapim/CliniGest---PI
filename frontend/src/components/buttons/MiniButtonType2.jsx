@@ -1,4 +1,4 @@
-export default function MiniButtonType2({ type, className, id, onClick, children='Mini botão tipo 2' }) {
+export default function MiniButtonType2({ type, className, id, onClick, children='Mini botão tipo 2', ...buttonProps }) {
     const styles = {
         style: {
             display:'flex',
@@ -16,7 +16,7 @@ export default function MiniButtonType2({ type, className, id, onClick, children
         },
     }
     return (
-        <button type={type} className={className} id={id} onClick={onClick} style={styles.style}>
+        <button type={type} className={className} id={id} onClick={onClick} style={styles.style} {...buttonProps}>
             {children}
         </button>
     );
