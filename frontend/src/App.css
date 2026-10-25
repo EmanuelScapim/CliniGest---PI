@@ -29,9 +29,7 @@ html{
   background-color: var(--HTMLBackgroundColor);
 }
 main{
-  padding: 5rem;
-  padding-left: 13rem;
-  padding-right: 1.5rem;
+  padding: 1rem;
 }
 input:not([type="checkbox"]) {
   width: 100%;
